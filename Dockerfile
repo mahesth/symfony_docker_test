@@ -12,7 +12,7 @@ RUN curl -sS https://getcomposer.org/installer | \
 RUN apt-get update
 RUN apt-get install zip unzip
 RUN cd /var/www/html/sym_test && composer install -o --no-interaction
-
+RUN chmod -R 777 /var/www/html/sym_test/var/cache && chmod -R 777 /var/www/html/sym_test/var/logs
 #RUN php bin/console cache:clear --env=prod
 #COPY app/php.ini /usr/local/etc/php
 #WORKDIR /var/www/html/sym_test/web
