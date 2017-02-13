@@ -1,0 +1,19 @@
+version: '2'
+services:
+  php:
+    image: test/symfony_app
+    volumes: 
+      - ./:/var/www/html/sym_test/
+    expose:
+      - "9000"
+  apache2:
+    image: test/symfony_app
+    environment:
+      APACHE_DOC_ROOT: /var/www/html/sym_test/web
+    ports:
+      - "80:80"
+    links:
+      - php
+    volumes_from: 
+      - php
+  
