@@ -1,6 +1,6 @@
 FROM php:7.0-apache
-#RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
-#RUN chmod a+x /usr/local/bin/symfony
+RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+RUN chmod a+x /usr/local/bin/symfony
 RUN docker-php-ext-install mbstring
 RUN a2enmod rewrite
 RUN rm -rf /var/www/html/sym_test
