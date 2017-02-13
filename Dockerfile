@@ -6,9 +6,12 @@ RUN a2enmod rewrite
 RUN rm -rf /var/www/html/sym_test
 ADD ./ /var/www/html/sym_test
 ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
-RUN docker-php-ext-install composer
-WORKDIR /var/www/html/sym_test/
-RUN composer install -o
+RUN curl -sS https://getcomposer.org/installer | \
+    php -- --install-dir=/usr/bin/ --filename=composer
+#WORKDIR /var/www/html/sym_test/
+RUN apt-get update
+RUN apt-get install zip unzip
+RUN cd /var/www/html/sym_test && composer install -o --no-interaction
 
 #RUN php bin/console cache:clear --env=prod
 #COPY app/php.ini /usr/local/etc/php
